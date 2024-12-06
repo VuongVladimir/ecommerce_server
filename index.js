@@ -1,19 +1,22 @@
 // IMPORT FROM PACKAGES
 const express = require("express");
 const mongoose = require("mongoose");
+require('dotenv').config();
 // IMPORT FROM OTHER FILES
 const authRouter = require("./routes/auth");
 const adminRouter = require("./routes/admin");
 const productRouter = require("./routes/product");
 const userRouter = require("./routes/user");
+const sellerRouter = require("./routes/seller");
 
 // INIT
 const PORT = process.env.PORT || 3000;
 const app = express();
-const DB = process.env.MONGODB_URL || "mongodb+srv://sugartank:super156789@cluster0.5xpcm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const DB = process.env.MONGODB_URL;
 // middleware
 app.use(express.json());
 app.use(authRouter);
+app.use(sellerRouter);
 app.use(adminRouter);
 app.use(productRouter);
 app.use(userRouter);
