@@ -215,7 +215,7 @@ userRouter.delete("/api/notifications/:id", auth, async (req, res) => {
 });
 
 // Delete all notifications for user
-userRouter.delete("/api/notifications/delete-all", auth, async (req, res) => {
+userRouter.delete("/api/notifications-all", auth, async (req, res) => {
     try {
         await Notification.deleteMany({ userId: req.user });
         res.json({ msg: "All notifications deleted successfully" });
@@ -225,7 +225,7 @@ userRouter.delete("/api/notifications/delete-all", auth, async (req, res) => {
 });
 
 // Add option to clear notifications older than X days
-userRouter.delete("/api/notifications/clear-old", auth, async (req, res) => {
+userRouter.delete("/api/notifications-old", auth, async (req, res) => {
     try {
         const daysOld = req.query.days || 30; // Default to 30 days
         const dateThreshold = new Date();
